@@ -96,6 +96,16 @@
     padding: 28px 24px;
   }
 
+  .about-photo {
+    display: block;
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    border: 4px solid var(--ink);
+    border-radius: 50%;
+    margin: 0 auto 20px;
+  }
+
   .about-heading {
     font-size: 2rem;
     font-weight: 900;
@@ -250,6 +260,16 @@
     max-width: 420px;
   }
 
+  .cancel-policy {
+    margin-top: 18px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-align: center;
+    max-width: 420px;
+    border: 2px solid var(--ink);
+    padding: 14px 16px;
+  }
+
   /* Subscribe modal */
   .modal-overlay {
     display: none;
@@ -309,6 +329,7 @@
   <div class="divider"></div>
 
   <section class="about-section">
+    <img class="about-photo" src="dirk-photo.jpg" alt="Dirk Frazel">
     <h2 class="about-heading">About Me</h2>
     <p>I'm Dirk — a Florida-born father, and the tech support my own Boomer parents call. I started this business to give you that same care and patience. No question is too small, no project too big. When you call, it's really me on the line, ready to help.</p>
   </section>
@@ -395,6 +416,8 @@
     <button type="button" class="btn btn-outline" onclick="document.getElementById('subscribe-modal').style.display='flex'">Subscribe</button>
     <a class="btn btn-outline" href="mailto:dfrazel@gmail.com?subject=Unsubscribe&body=Please%20remove%20me%20from%20your%20list.">Unsubscribe</a>
   </div>
+
+  <p class="cancel-policy">Cancel anytime, no questions asked. Just click Unsubscribe below and I'll take care of it personally.</p>
 
   <p class="note">Buttons open your phone or email app directly — no account needed.</p>
 
