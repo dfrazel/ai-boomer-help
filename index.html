@@ -161,7 +161,11 @@
     -webkit-overflow-scrolling: touch;
   }
 
-  .carousel-track::-webkit-scrollbar {
+  .carousel-track:focus-visible,
+  .review-track:focus-visible {
+    outline: 4px solid #000000;
+    outline-offset: 2px;
+  }
     height: 10px;
   }
   .carousel-track::-webkit-scrollbar-thumb {
@@ -339,6 +343,23 @@
     color: var(--ink);
   }
 
+  .skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    background: var(--ink);
+    color: #ffffff;
+    font-weight: 900;
+    text-transform: uppercase;
+    padding: 12px 20px;
+    z-index: 2000;
+  }
+
+  .skip-link:focus {
+    left: 12px;
+    top: 12px;
+  }
+
   /* Reviews carousel */
   .reviews-section {
     width: 100%;
@@ -410,6 +431,8 @@
 </head>
 <body id="top">
 
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
   <header>
     <h1>AI Boomer Help</h1>
     <p class="url">Helping Baby Boomers with AI</p>
@@ -420,7 +443,7 @@
 
   <div class="divider"></div>
 
-  <section class="about-section">
+  <section class="about-section" id="main-content">
     <img class="about-photo" src="dirk-photo.jpg" alt="Dirk Frazel">
     <h2 class="about-heading">About Me</h2>
     <p>I'm Dirk — a Florida-born father, and the tech support my own Boomer parents call. I started this business to give you that same care and patience. No question is too small, no project too big. When you call, it's really me on the line, ready to help.</p>
@@ -430,7 +453,7 @@
 
   <section class="carousel-section">
     <div class="carousel-heading">Common Questions &amp; Projects</div>
-    <div class="carousel-track">
+    <div class="carousel-track" role="region" aria-label="Common questions and projects, scrollable" tabindex="0">
 
       <div class="card highlight">
         <span class="tag">Real Human Help</span>
@@ -505,7 +528,7 @@
   <div class="buttons">
     <a class="btn btn-solid" href="tel:+19547702992">Call Now</a>
     <a class="btn btn-solid" href="mailto:dfrazel@gmail.com">Email Me</a>
-    <button type="button" class="btn btn-outline" onclick="document.getElementById('subscribe-modal').style.display='flex'">Subscribe</button>
+    <button type="button" class="btn btn-outline" onclick="openSubscribeModal()">Subscribe</button>
     <a class="btn btn-outline" href="mailto:dfrazel@gmail.com?subject=Unsubscribe&body=Please%20remove%20me%20from%20your%20list.">Unsubscribe</a>
   </div>
 
@@ -515,7 +538,7 @@
 
   <section class="reviews-section">
     <div class="reviews-heading">What Clients Say</div>
-    <div class="review-track">
+    <div class="review-track" role="region" aria-label="Client reviews, scrollable" tabindex="0">
 
       <div class="review-card">
         <div class="review-stars">★★★★★</div>
@@ -545,13 +568,13 @@
     <p class="scroll-hint">&larr; Swipe or scroll to see more &rarr;</p>
   </section>
 
-  <p class="footer-links"><a href="privacy-policy.html">Privacy Policy</a> &nbsp;|&nbsp; <a href="terms.html">Terms of Service</a></p>
+  <p class="footer-links"><a href="privacy-policy.html">Privacy Policy</a> &nbsp;|&nbsp; <a href="terms.html">Terms of Service</a> &nbsp;|&nbsp; <a href="accessibility.html">Accessibility</a></p>
 
   <!-- Subscribe Modal with Stripe Pricing Table -->
-  <div id="subscribe-modal" class="modal-overlay" onclick="if(event.target===this) this.style.display='none'">
+  <div id="subscribe-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="subscribe-modal-heading" onclick="if(event.target===this) closeSubscribeModal()">
     <div class="modal-box">
-      <button type="button" class="modal-close" onclick="document.getElementById('subscribe-modal').style.display='none'">✕</button>
-      <h2 class="modal-heading">Choose Your Plan</h2>
+      <button type="button" class="modal-close" aria-label="Close plan selection dialog" onclick="closeSubscribeModal()">✕</button>
+      <h2 class="modal-heading" id="subscribe-modal-heading">Choose Your Plan</h2>
 
       <!--
         TODO: Once you create your Pricing Table in the Stripe Dashboard
@@ -566,6 +589,32 @@
       </stripe-pricing-table>
     </div>
   </div>
+
+  <script>
+    var lastFocusedElement = null;
+
+    function openSubscribeModal() {
+      lastFocusedElement = document.activeElement;
+      var modal = document.getElementById('subscribe-modal');
+      modal.style.display = 'flex';
+      var closeBtn = modal.querySelector('.modal-close');
+      if (closeBtn) closeBtn.focus();
+      document.addEventListener('keydown', handleModalKeydown);
+    }
+
+    function closeSubscribeModal() {
+      var modal = document.getElementById('subscribe-modal');
+      modal.style.display = 'none';
+      document.removeEventListener('keydown', handleModalKeydown);
+      if (lastFocusedElement) lastFocusedElement.focus();
+    }
+
+    function handleModalKeydown(e) {
+      if (e.key === 'Escape') {
+        closeSubscribeModal();
+      }
+    }
+  </script>
 
 </body>
 </html>
