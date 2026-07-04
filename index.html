@@ -338,6 +338,74 @@
   .footer-links a {
     color: var(--ink);
   }
+
+  /* Reviews carousel */
+  .reviews-section {
+    width: 100%;
+    max-width: 700px;
+    margin-top: 48px;
+  }
+
+  .reviews-heading {
+    font-size: 2rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+  }
+
+  .review-track {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    padding: 8px 4px 16px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .review-track::-webkit-scrollbar {
+    height: 10px;
+  }
+  .review-track::-webkit-scrollbar-thumb {
+    background: var(--ink);
+    border-radius: 5px;
+  }
+  .review-track::-webkit-scrollbar-track {
+    background: #ffffff;
+    border: 2px solid var(--ink);
+  }
+
+  .review-card {
+    flex: 0 0 280px;
+    scroll-snap-align: start;
+    border: 3px solid var(--ink);
+    padding: 20px;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .review-stars {
+    font-size: 1.3rem;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+  }
+
+  .review-card p.quote {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 0 0 14px;
+    flex-grow: 1;
+  }
+
+  .review-card p.author {
+    font-size: 0.95rem;
+    font-weight: 900;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
 </style>
 </head>
 <body id="top">
@@ -444,6 +512,38 @@
   <p class="cancel-policy">Cancel anytime, no questions asked. Just click Unsubscribe below and I'll take care of it personally.</p>
 
   <p class="note">Buttons open your phone or email app directly — no account needed.</p>
+
+  <section class="reviews-section">
+    <div class="reviews-heading">What Clients Say</div>
+    <div class="review-track">
+
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="quote">"Dirk is my nephew and I rely on him regarding the seemingly hundreds of spam calls that I get per week. He has saved me from both scams in my email and on my phone. He helped me clean up my inbox and block unwanted contact and spam. I would recommend Dirk to anyone of any age to help secure themselves on the internet and on the phone."</p>
+        <p class="author">— Jim Frazel</p>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="quote">"I asked Dirk to fix a few of our family photos that had been damaged by sun or by liquid. They turned out amazing and I am able to cherish these photographs again for the first time in 15+ years! Five Stars."</p>
+        <p class="author">— Rowena Frazel</p>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="quote">"Dirk has saved me thousands of dollars and countless hours of hassle by quickly identifying scam tactics used by nefarious actors here in Florida."</p>
+        <p class="author">— Denis Frazel</p>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="quote">"Dirk built my website for my small engine repair business and set up my Google Business Page. I now have access to all my clients and information at my fingertips because the CRM software he installed works flawlessly. I would recommend his services to anyone."</p>
+        <p class="author">— Bruce Koon</p>
+      </div>
+
+    </div>
+    <p class="scroll-hint">&larr; Swipe or scroll to see more &rarr;</p>
+  </section>
 
   <p class="footer-links"><a href="privacy-policy.html">Privacy Policy</a> &nbsp;|&nbsp; <a href="terms.html">Terms of Service</a></p>
 
